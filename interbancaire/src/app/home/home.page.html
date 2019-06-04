@@ -21,7 +21,7 @@
   </ion-card>
   <ion-list>
     <app-accordion ion-item *ngFor="let alphabetContact of alphabetContacts;index as i" [title]="alphabetContact.letter"
-      [setExpanded]="0">
+      [setExpanded]="i">
       <ion-list>
         <app-accordion-custom ion-item *ngFor="let contact of alphabetContact.contacts" [image]="contact.image"
           [title]="contact.displayName">
@@ -31,12 +31,11 @@
               <ion-checkbox>
               </ion-checkbox>
             </ion-item>
-            <ion-radio-group>
             <ion-item *ngFor="let email of contact.emails">
               <ion-label class="contact-connect">{{email.type}}: {{email.value}}</ion-label>
-              <ion-radio></ion-radio>
+              <ion-checkbox>
+              </ion-checkbox>
             </ion-item>
-          </ion-radio-group>
           </ion-list>
         </app-accordion-custom>
       </ion-list>
