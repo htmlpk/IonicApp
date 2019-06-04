@@ -1,0 +1,11 @@
+<ion-card class="header" (click)="toggleAccordion()" >
+  <ion-avatar style="float: left;height: 35px;width: 35px;" *ngIf="image">
+    <img [src]="image">
+  </ion-avatar>
+  <ion-label class="alphabet-letter-name">
+    <h1>{{title}}</h1>
+  </ion-label>
+</ion-card>
+<ion-card-content #cc class="card-content">
+  <ng-content></ng-content>
+</ion-card-content>
