@@ -1,21 +1,31 @@
 .header{
     width: 100%;
     height: 35px;
-    margin: 0px;
-    padding: 2px;
-    background-color: #ccc;
+    margin: 0px 0px 2px;
+    padding: 2px 18px;
+    box-shadow: none;
+    border-bottom: 2px solid #e2e2e2;
+    border-radius: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 .item-native{
     width: 0px;
 }
 
 .alphabet-letter-name{
-    float: left;
-    padding-left: 10px;
     font-size: 16px;
     font-family: Verdana, Tahoma, sans-serif;
     color: #1e1e1e;
     vertical-align: middle;
+    display: inline-block;
+    color: #478aff;
+    height: 45px;
+    width: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 // accordion {
@@ -44,7 +54,6 @@
     
 // }
 .card-content{
-    max-height:500px;
     padding: 0;
-    display: unset;
+    display: none;
 }

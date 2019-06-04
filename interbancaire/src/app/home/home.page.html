@@ -1,11 +1,11 @@
 <ion-header>
   <div style="margin: 10px;vertical-align: middle">
     <ion-button style="float: right; vertical-align: middle">
-      Done
+      Valider
     </ion-button>
   </div>
   <ion-toolbar class="toolbar">
-    <ion-searchbar (ionInput)="find($event)">
+    <ion-searchbar placeholder="Rechercher" (ionInput)="find($event)">
     </ion-searchbar>
   </ion-toolbar>
 </ion-header>
@@ -16,21 +16,21 @@
       <img [src]="addContactImageUrl" style="height: 40px;width:40px">
     </ion-avatar>
     <ion-label class="add-contact-lable">
-      <h1>Add contact</h1>
+      <h2>Nouveau contact</h2>
     </ion-label>
   </ion-card>
   <div [hidden]="ready" class="loader-wrapper">
     <div>
       <ion-label>
-        Loading contacts...
+        Chargement...
       </ion-label>
       <ion-spinner name="crescent" color="#478aff"></ion-spinner>
     </div>
   </div>
-  <ion-list [hidden]="!ready">
+  <ion-list class="list-container" [hidden]="!ready">
     <app-accordion ion-item *ngFor="let alphabetContact of alphabetContacts;index as i" [title]="alphabetContact.letter"
       [setExpanded]="i">
-      <ion-list>
+      <ion-list class="contact-holder">
         <app-accordion-custom ion-item *ngFor="let contact of alphabetContact.contacts" [image]="contact.image" [alias]="contact.name.formatted"
           [title]="contact.displayName">
           <ion-list>

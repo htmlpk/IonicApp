@@ -1,6 +1,13 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\interbancaire",
+    "\\interbancaire\\src",
+    "\\interbancaire\\src\\app",
+    "\\interbancaire\\src\\app\\accordion",
+    "\\interbancaire\\src\\app\\accordion-custom",
+    "\\interbancaire\\src\\app\\home"
   ],
+  "SelectedNode": "\\interbancaire\\src\\app\\home\\home.page.html",
   "PreviewInSolutionExplorer": false
 }

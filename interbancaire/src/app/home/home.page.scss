@@ -13,6 +13,21 @@
 ion-list{
     padding:0px;
 }
+.contact-holder {
+    margin-bottom: 14px;
+    ion-item {
+        --padding-start: 30px;
+        --border-width: 0;
+        --border-color: transparent;
+        border-bottom: 1px solid #e2e2e2;
+        --font-size: 14px;
+        --background-checked: #478aff;
+        --border-color-checked: #478aff;
+    }
+}
+.list-ios{
+    margin-bottom: 14px;
+}
 app-accordion-custom{
     width: 100%;
 }
@@ -21,7 +36,12 @@ app-accordion-custom{
     width: 100%;
     background-color: #ffffff;
     float: right;
+    font-size: 14px;
 }
+.list-container{
+    padding: 0 10px;
+}
+
 .letter-list{
     padding: 0;
 }
@@ -58,7 +78,7 @@ app-accordion-custom{
     .add-contact-lable{
         float: left;
         vertical-align: middle;
-        color: #478aff;
+        color: #478aff;;
     }
 }
 
