@@ -19,20 +19,22 @@ export class AccordionComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.setExpanded == 0) {
       this.accordionExapanded = true;
+    }
     this.toggleAccordion();
   }
 
   toggleAccordion() {
-    // if (!this.accordionExapanded) {
-    //   this.renderer.setElementStyle(this.cardContent.el, "max-height", "0px");
-    //   this.renderer.setElementStyle(this.cardContent.el, "padding", "0px");
-    //   this.renderer.setElementStyle(this.cardContent.el, "display", "none");
-    // } else {
-    //   this.renderer.setElementStyle(this.cardContent.el, "max-height", "500px");
-    //   this.renderer.setElementStyle(this.cardContent.el, "padding", "0");
-    //   this.renderer.setElementStyle(this.cardContent.el, "display", "unset");
-    // }
-    // this.accordionExapanded = !this.accordionExapanded;
+    if (!this.accordionExapanded) {
+      this.renderer.setElementStyle(this.cardContent.el, "max-height", "0px");
+      this.renderer.setElementStyle(this.cardContent.el, "padding", "0px");
+      this.renderer.setElementStyle(this.cardContent.el, "display", "none");
+    } else {
+      this.renderer.setElementStyle(this.cardContent.el, "max-height", "500px");
+      this.renderer.setElementStyle(this.cardContent.el, "padding", "0");
+      this.renderer.setElementStyle(this.cardContent.el, "display", "unset");
+    }
+    this.accordionExapanded = !this.accordionExapanded;
   }
 }
