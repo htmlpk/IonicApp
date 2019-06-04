@@ -1,3 +1,9 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-content *ngIf="!ready">
+    <ion-label>
+      Loading contacts...
+    </ion-label>
+    <ion-spinner name="lines"></ion-spinner>
+  </ion-content>
+  <ion-router-outlet *ngIf="ready"></ion-router-outlet>
 </ion-app>

@@ -13,6 +13,7 @@ import { Contacts } from '@ionic-native/contacts/ngx';
 import { HTTP } from '@ionic-native/http/ngx';
 import { Platform } from '@ionic/angular';
 import { AppVersion } from '@ionic-native/app-version/ngx';
+import { UpdatesCheckService } from './shared/services/updates-check.service';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -25,7 +26,8 @@ import { AppVersion } from '@ionic-native/app-version/ngx';
     Contacts,
     HTTP,
     Platform,
-    AppVersion
+    AppVersion,
+    UpdatesCheckService
   ],
   bootstrap: [AppComponent]
 })

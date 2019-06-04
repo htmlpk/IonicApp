@@ -27,9 +27,9 @@ export class AccordionComponent implements OnInit {
 
   toggleAccordion() {
     if (!this.accordionExapanded) {
-      this.renderer.setElementStyle(this.cardContent.el, "max-height", "0px");
-      this.renderer.setElementStyle(this.cardContent.el, "padding", "0px");
-      this.renderer.setElementStyle(this.cardContent.el, "display", "none");
+      this.renderer.setElementStyle(this.cardContent.el, "max-height", "500px");
+      this.renderer.setElementStyle(this.cardContent.el, "padding", "0");
+      this.renderer.setElementStyle(this.cardContent.el, "display", "unset");
     } else {
       this.renderer.setElementStyle(this.cardContent.el, "max-height", "500px");
       this.renderer.setElementStyle(this.cardContent.el, "padding", "0");

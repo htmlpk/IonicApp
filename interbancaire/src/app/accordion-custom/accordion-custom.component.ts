@@ -13,6 +13,7 @@ export class AccordionCustomComponent implements OnInit {
   @Input('title') title: string;
   @Input('setExpanded') setExpanded: any;
   @Input('image') image: any;
+  @Input('alias') alias:string;
   icon: string = "arrow-forward";
 
   constructor(public renderer: Renderer) {

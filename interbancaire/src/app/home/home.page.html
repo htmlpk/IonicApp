@@ -10,7 +10,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="ready">
+<ion-content>
   <ion-card class="add-contact-btn-container">
     <ion-avatar class="add-contact-icon">
       <img [src]="addContactImageUrl" style="height: 40px;width:40px">
@@ -19,23 +19,31 @@
       <h1>Add contact</h1>
     </ion-label>
   </ion-card>
-  <ion-list>
+  <div [hidden]="ready" class="loader-wrapper">
+    <div>
+      <ion-label>
+        Loading contacts...
+      </ion-label>
+      <ion-spinner name="crescent" color="#478aff"></ion-spinner>
+    </div>
+  </div>
+  <ion-list [hidden]="!ready">
     <app-accordion ion-item *ngFor="let alphabetContact of alphabetContacts;index as i" [title]="alphabetContact.letter"
       [setExpanded]="i">
       <ion-list>
-        <app-accordion-custom ion-item *ngFor="let contact of alphabetContact.contacts" [image]="contact.image"
+        <app-accordion-custom ion-item *ngFor="let contact of alphabetContact.contacts" [image]="contact.image" [alias]="contact.name.formatted"
           [title]="contact.displayName">
           <ion-list>
-            <ion-item *ngFor="let item of contact.phoneNumbers">
-              <ion-label class="contact-connect">{{item.type}}: {{item.value}}</ion-label>
-              <ion-checkbox>
-              </ion-checkbox>
-            </ion-item>
-            <ion-item *ngFor="let email of contact.emails">
-              <ion-label class="contact-connect">{{email.type}}: {{email.value}}</ion-label>
-              <ion-checkbox>
-              </ion-checkbox>
-            </ion-item>
+            <ion-radio-group allow-empty-selection="true">
+              <ion-item *ngFor="let item of contact.phoneNumbers">
+                <ion-label class="contact-connect">{{item.type}}: {{item.value}}</ion-label>
+                <ion-radio></ion-radio>
+              </ion-item>
+              <ion-item *ngFor="let email of contact.emails">
+                <ion-label class="contact-connect">{{email.type}}: {{email.value}}</ion-label>
+                <ion-radio></ion-radio>
+              </ion-item>
+            </ion-radio-group>
           </ion-list>
         </app-accordion-custom>
       </ion-list>

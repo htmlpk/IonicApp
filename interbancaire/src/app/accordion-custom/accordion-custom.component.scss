@@ -17,6 +17,22 @@
     font-size: 14px;
     font-weight: 700;
 }
+ion-avatar{
+    float: left;
+    height: 45px;
+    width: 45px;
+    position: relative;
+    background-color: #ccc;
+    div{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+        color: #478aff;
+        font-size: 20px;
+    }
+}
 // accordion {
 //     .card-content {
 //         padding: 0px; 

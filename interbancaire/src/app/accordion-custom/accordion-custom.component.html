@@ -1,6 +1,7 @@
 <ion-card class="header" (click)="toggleAccordion()">
-  <ion-avatar style="float: left;height: 45px;width: 45px;" *ngIf="image">
-    <img [src]="image">
+  <ion-avatar style="float: left;height: 45px;width: 45px;" >
+    <img *ngIf="image" [src]="image">
+    <div *ngIf="!image">{{alias}}</div>
   </ion-avatar>
   <ion-label class="contact-name">
     <h2>{{title}}</h2>
