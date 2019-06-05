@@ -22,19 +22,19 @@
   <div [hidden]="ready" class="loader-wrapper">
     <div>
       <ion-label>
-        Chargement...
+        Chargement des contacts ...
       </ion-label>
       <ion-spinner name="crescent" color="#478aff"></ion-spinner>
     </div>
   </div>
   <ion-list class="list-container" [hidden]="!ready">
-    <app-accordion ion-item *ngFor="let alphabetContact of alphabetContacts;index as i" [title]="alphabetContact.letter"
-      [setExpanded]="i">
-      <ion-list class="contact-holder">
-        <app-accordion-custom ion-item *ngFor="let contact of alphabetContact.contacts" [image]="contact.image" [alias]="contact.name.formatted"
-          [title]="contact.displayName">
-          <ion-list>
-            <ion-radio-group allow-empty-selection="true">
+    <ion-radio-group allow-empty-selection="true">
+      <app-accordion ion-item *ngFor="let alphabetContact of alphabetContacts;index as i"
+        [title]="alphabetContact.letter" [setExpanded]="i">
+        <ion-list class="contact-holder">
+          <app-accordion-custom ion-item *ngFor="let contact of alphabetContact.contacts" [image]="contact.image"
+            [alias]="contact.name.formatted" [title]="contact.displayName">
+            <ion-list>
               <ion-item *ngFor="let item of contact.phoneNumbers">
                 <ion-label class="contact-connect">{{item.type}}: {{item.value}}</ion-label>
                 <ion-radio></ion-radio>
@@ -43,11 +43,11 @@
                 <ion-label class="contact-connect">{{email.type}}: {{email.value}}</ion-label>
                 <ion-radio></ion-radio>
               </ion-item>
-            </ion-radio-group>
-          </ion-list>
-        </app-accordion-custom>
-      </ion-list>
-    </app-accordion>
+            </ion-list>
+          </app-accordion-custom>
+        </ion-list>
+      </app-accordion>
+    </ion-radio-group>
   </ion-list>
 </ion-content>
 <!-- <ion-list>

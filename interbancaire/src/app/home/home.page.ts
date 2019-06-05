@@ -17,7 +17,7 @@ import { UpdatesCheckService } from '../shared/services/updates-check.service';
 })
 export class HomePage implements OnInit {
   public allContacts: Contact[] = [];
-  public contactType: ContactFieldType[] = ["displayName"];
+  public contactType: ContactFieldType[] = ["displayName", "phoneNumbers"];
   public contact: Contact;
   public phoneNumbers: IContactField[];
   public alphabet: any[];
@@ -27,9 +27,7 @@ export class HomePage implements OnInit {
   public ready: boolean = false;
 
   ngOnInit(): void {
-    this.checkUpdates();
     this.getFiltered('');
-    console.log(this.allContacts);
   }
 
   constructor(
@@ -38,15 +36,7 @@ export class HomePage implements OnInit {
     private sanitizer: DomSanitizer,
     public renderer: Renderer,
     public plt: Platform,
-    private updatesCheckService: UpdatesCheckService) {
-  }
-
-  public sanitizeImage(value) {
-    return this.sanitizer.bypassSecurityTrustUrl(value);
-  }
-
-  public checkUpdates(): void {
-    //this.updatesCheckService.alertIfRequiredUpdate();
+  ) {
   }
 
   public getFiltered = (q) => {
@@ -56,7 +46,7 @@ export class HomePage implements OnInit {
       hasPhoneNumber: true,
     }
     setTimeout(() => {
-      this.contacts.find(['displayName', 'phoneNumbers'], option)
+      this.contacts.find(this.contactType, option)
         .then(data => {
           this.allContacts = data
             .map(y => {
@@ -79,7 +69,7 @@ export class HomePage implements OnInit {
                 || n.value.startsWith("07")
                 || n.value.startsWith("+337")
                 || n.value.startsWith("+336")
-                || n.value.startsWith("44")
+                //|| n.value.startsWith("44")
               )
               if (isNumbersExist.length > 0 && x.displayName) {
                 x.phoneNumbers = isNumbersExist;
@@ -120,21 +110,6 @@ export class HomePage implements OnInit {
     }, 100);
     // this.alphabetContacts =JSON.parse("[{\"letter\":\"M\",\"contacts\":[{\"_objectInstance\":{\"id\":\"23\",\"rawId\":null,\"displayName\":\"Mehdi\",\"name\":{\"givenName\":\"Mehdi\",\"formatted\":\"Mehdi \"},\"nickname\":null,\"phoneNumbers\":[{\"id\":\"70\",\"pref\":false,\"value\":\"066 039 6795\",\"type\":\"mobile\"}],\"emails\":null,\"addresses\":null,\"ims\":null,\"organizations\":null,\"birthday\":null,\"note\":null,\"photos\":null,\"categories\":null,\"urls\":null},\"rawId\":\"23\",\"image\":{\"changingThisBreaksApplicationSecurity\":\"assets/icon/dummy-profile-pic.png\"}}]},{\"letter\":\"А\",\"contacts\":[{\"_objectInstance\":{\"id\":\"480\",\"rawId\":null,\"displayName\":\"Афанаскин Андрей\",\"name\":{\"familyName\":\"Андрей\",\"givenName\":\"Афанаскин\",\"formatted\":\"Афанаскин Андрей\"},\"nickname\":null,\"phoneNumbers\":[{\"id\":\"1303\",\"pref\":false,\"value\":\"066 620 6271\",\"type\":\"mobile\"}],\"emails\":null,\"addresses\":null,\"ims\":null,\"organizations\":null,\"birthday\":null,\"note\":null,\"photos\":null,\"categories\":null,\"urls\":null},\"rawId\":\"478\",\"image\":{\"changingThisBreaksApplicationSecurity\":\"assets/icon/dummy-profile-pic.png\"}}]},{\"letter\":\"Б\",\"contacts\":[{\"_objectInstance\":{\"id\":\"41\",\"rawId\":null,\"displayName\":\"Бабушка\",\"name\":{\"givenName\":\"Бабушка\",\"formatted\":\"Бабушка \"},\"nickname\":null,\"phoneNumbers\":[{\"id\":\"138\",\"pref\":false,\"value\":\"0684220405\",\"type\":\"mobile\"}],\"emails\":null,\"addresses\":null,\"ims\":null,\"organizations\":null,\"birthday\":null,\"note\":null,\"photos\":null,\"categories\":null,\"urls\":null},\"rawId\":\"46\",\"image\":{\"changingThisBreaksApplicationSecurity\":\"assets/icon/dummy-profile-pic.png\"}}]},{\"letter\":\"Д\",\"contacts\":[{\"_objectInstance\":{\"id\":\"49\",\"rawId\":null,\"displayName\":\"Дудок Лена\",\"name\":{\"familyName\":\"Лена\",\"givenName\":\"Дудок\",\"formatted\":\"Дудок Лена\"},\"nickname\":null,\"phoneNumbers\":[{\"id\":\"144\",\"pref\":false,\"value\":\"0662897067\",\"type\":\"mobile\"}],\"emails\":null,\"addresses\":null,\"ims\":null,\"organizations\":null,\"birthday\":null,\"note\":null,\"photos\":null,\"categories\":null,\"urls\":null},\"rawId\":\"48\",\"image\":{\"changingThisBreaksApplicationSecurity\":\"assets/icon/dummy-profile-pic.png\"}},{\"_objectInstance\":{\"id\":\"486\",\"rawId\":null,\"displayName\":\"Данил\",\"name\":{\"givenName\":\"Данил\",\"formatted\":\"Данил \"},\"nickname\":null,\"phoneNumbers\":[{\"id\":\"1326\",\"pref\":false,\"value\":\"066 922 5111\",\"type\":\"mobile\"}],\"emails\":null,\"addresses\":null,\"ims\":null,\"organizations\":null,\"birthday\":null,\"note\":null,\"photos\":null,\"categories\":null,\"urls\":null},\"rawId\":\"484\",\"image\":{\"changingThisBreaksApplicationSecurity\":\"assets/icon/dummy-profile-pic.png\"}}]},{\"letter\":\"К\",\"contacts\":[{\"_objectInstance\":{\"id\":\"484\",\"rawId\":null,\"displayName\":\"Клубань Юрий\",\"name\":{\"familyName\":\"Юрий\",\"givenName\":\"Клубань\",\"formatted\":\"Клубань Юрий\"},\"nickname\":null,\"phoneNumbers\":[{\"id\":\"1318\",\"pref\":false,\"value\":\"066 438 9869\",\"type\":\"mobile\"}],\"emails\":null,\"addresses\":null,\"ims\":null,\"organizations\":null,\"birthday\":null,\"note\":null,\"photos\":null,\"categories\":null,\"urls\":null},\"rawId\":\"482\",\"image\":{\"changingThisBreaksApplicationSecurity\":\"assets/icon/dummy-profile-pic.png\"}}]},{\"letter\":\"Л\",\"contacts\":[{\"_objectInstance\":{\"id\":\"552\",\"rawId\":null,\"displayName\":\"Львова Анна\",\"name\":{\"familyName\":\"Анна\",\"givenName\":\"Львова\",\"formatted\":\"Львова Анна\"},\"nickname\":null,\"phoneNumbers\":[{\"id\":\"1564\",\"pref\":false,\"value\":\"066 766 7618\",\"type\":\"mobile\"},{\"id\":\"1576\",\"pref\":false,\"value\":\"066 766 7618\",\"type\":\"mobile\"}],\"emails\":[{\"id\":\"1667\",\"pref\":false,\"value\":\"аааам@штт.рнг\",\"type\":\"work\"}],\"addresses\":null,\"ims\":null,\"organizations\":[{\"id\":\"1566\",\"pref\":false,\"name\":\"Anuitex\",\"title\":\"Project Manager\"}],\"birthday\":null,\"note\":null,\"photos\":null,\"categories\":null,\"urls\":null},\"rawId\":\"550\",\"image\":{\"changingThisBreaksApplicationSecurity\":\"assets/icon/dummy-profile-pic.png\"}}]},{\"letter\":\"Н\",\"contacts\":[{\"_objectInstance\":{\"id\":\"567\",\"rawId\":null,\"displayName\":\"Наприковская Н. Н\",\"name\":{\"familyName\":\"Н\",\"givenName\":\"Наприковская\",\"middleName\":\"Н.\",\"formatted\":\"Наприковская Н. Н\"},\"nickname\":null,\"phoneNumbers\":[{\"id\":\"1632\",\"pref\":false,\"value\":\"066 732 3382\",\"type\":\"mobile\"}],\"emails\":null,\"addresses\":null,\"ims\":null,\"organizations\":null,\"birthday\":null,\"note\":null,\"photos\":null,\"categories\":null,\"urls\":null},\"rawId\":\"565\",\"image\":{\"changingThisBreaksApplicationSecurity\":\"assets/icon/dummy-profile-pic.png\"}}]},{\"letter\":\"Р\",\"contacts\":[{\"_objectInstance\":{\"id\":\"529\",\"rawId\":null,\"displayName\":\"Резуненко А А\",\"name\":{\"familyName\":\"А\",\"givenName\":\"Резуненко\",\"middleName\":\"А\",\"formatted\":\"Резуненко А А\"},\"nickname\":null,\"phoneNumbers\":[{\"id\":\"1481\",\"pref\":false,\"value\":\"067 577 9125\",\"type\":\"mobile\"}],\"emails\":null,\"addresses\":null,\"ims\":null,\"organizations\":null,\"birthday\":null,\"note\":null,\"photos\":null,\"categories\":null,\"urls\":null},\"rawId\":\"527\",\"image\":{\"changingThisBreaksApplicationSecurity\":\"assets/icon/dummy-profile-pic.png\"}}]}]") 
   };
-
-  compare(a, b) {
-    if (a.displayName < b.displayName)
-      return -1;
-    if (a.displayName > b.displayName)
-      return 1;
-    return 0;
-  }
-
-  public toggleItem(ev): void {
-    this.renderer.setElementStyle(ev.el, "max-height", "500px");
-  }
-  public find(ev): void {
-    this.getFiltered(ev.target.value);
-  }
 }
 
 export class AlphabetContacts {

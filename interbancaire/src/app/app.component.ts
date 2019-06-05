@@ -8,7 +8,9 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
 @Component({
   selector: 'app-root',
-  templateUrl: 'app.component.html'
+  templateUrl: 'app.component.html',
+  styleUrls: ['app.component.scss']
+
 })
 export class AppComponent {
   public ready: boolean = false;
@@ -20,7 +22,12 @@ export class AppComponent {
     private androidPermissions: AndroidPermissions
   ) {
     //this.initializeApp();
-    this.chechPermissions();
+    this.chechPermissions().then(
+      () => {
+        this.initializeApp();
+      }
+    );
+
   }
 
   initializeApp() {
@@ -30,9 +37,9 @@ export class AppComponent {
       this.ready = true;
     });
   }
-  public chechPermissions(): void {
-    this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.READ_CONTACTS).then(
-      err => this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.READ_CONTACTS).then(() => this.initializeApp())
+  public chechPermissions(): Promise<void> {
+    return this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.READ_CONTACTS).then(
+      err => { return this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.READ_CONTACTS) }
     );
   }
 }

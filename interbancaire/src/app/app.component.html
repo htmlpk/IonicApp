@@ -1,9 +1,11 @@
 <ion-app>
-  <ion-content *ngIf="!ready">
-    <ion-label>
-      Loading contacts...
-    </ion-label>
-    <ion-spinner name="lines"></ion-spinner>
+  <ion-content class="loader-wrapper" *ngIf="!ready">
+    <div>
+      <ion-label>
+          Vérification de la permission...
+      </ion-label>
+      <ion-spinner name="lines"></ion-spinner>
+    </div>
   </ion-content>
   <ion-router-outlet *ngIf="ready"></ion-router-outlet>
 </ion-app>
